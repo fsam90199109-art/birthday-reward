@@ -6,6 +6,7 @@
 <title>Birthday Surprise</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -14,147 +15,229 @@ font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
+
+background:linear-gradient(135deg,#031224,#0A1F44,#173A75);
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#04142E,#0B234A,#132D63);
 overflow:hidden;
 color:white;
+
 }
 
 body::before{
+
 content:"";
 position:absolute;
 width:200%;
 height:200%;
-background:
-radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);
-background-size:40px 40px;
-animation:moveStars 40s linear infinite;
-opacity:.5;
+background-image:
+radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px);
+
+background-size:45px 45px;
+
+animation:stars 35s linear infinite;
+
+opacity:.35;
+
 }
 
-@keyframes moveStars{
-from{transform:translateY(0);}
-to{transform:translateY(-200px);}
+@keyframes stars{
+
+100%{
+transform:translateY(-250px);
+}
+
 }
 
 .card{
+
 position:relative;
-z-index:2;
-width:420px;
+
+width:430px;
+
 padding:45px;
+
+border-radius:28px;
+
 background:rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
-border-radius:24px;
+
+backdrop-filter:blur(18px);
+
 border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 20px 50px rgba(0,0,0,.45);
+
 text-align:center;
-box-shadow:0 20px 50px rgba(0,0,0,.4);
+
+z-index:2;
+
 }
 
 .gift{
+
 font-size:70px;
-margin-bottom:15px;
+
 animation:float 3s ease-in-out infinite;
+
 }
 
 @keyframes float{
-50%{transform:translateY(-10px);}
+
+50%{
+transform:translateY(-10px);
+}
+
 }
 
 h1{
+
+margin-top:15px;
+
 font-size:34px;
-margin-bottom:12px;
+
 }
 
 p{
-color:#cfd9f6;
-line-height:1.6;
-margin-bottom:30px;
+
+margin-top:20px;
+
+color:#D5E1FF;
+
+line-height:1.7;
+
+font-size:18px;
+
 }
 
 button{
-padding:16px 38px;
-font-size:18px;
-background:#2563eb;
-color:white;
+
+margin-top:35px;
+
+padding:17px 45px;
+
 border:none;
-border-radius:50px;
+
+border-radius:60px;
+
+background:#2563EB;
+
+color:white;
+
+font-size:18px;
+
 cursor:pointer;
+
 transition:.3s;
-box-shadow:0 0 25px rgba(37,99,235,.4);
+
+box-shadow:0 0 25px rgba(37,99,235,.45);
+
 }
 
 button:hover{
+
 transform:scale(1.05);
-background:#3b82f6;
+
+background:#3B82F6;
+
 }
 
 .loader{
+
 display:none;
-margin:25px auto;
+
+margin:35px auto;
+
 width:65px;
+
 height:65px;
-border:6px solid rgba(255,255,255,.15);
-border-top:6px solid white;
+
 border-radius:50%;
+
+border:6px solid rgba(255,255,255,.15);
+
+border-top:6px solid white;
+
 animation:spin 1s linear infinite;
+
 }
 
 @keyframes spin{
-100%{transform:rotate(360deg);}
+
+100%{
+transform:rotate(360deg);
+}
+
 }
 
 #status{
+
 display:none;
-font-size:20px;
-margin-top:20px;
+
+font-size:22px;
+
+margin-top:15px;
+
+min-height:40px;
+
 }
 
 .small{
-margin-top:15px;
+
+margin-top:20px;
+
 font-size:15px;
-color:#c8d5ff;
+
+color:#bfcfff;
+
 }
 
-.fade{
-animation:fade .6s;
+canvas{
+
+position:fixed;
+
+left:0;
+top:0;
+pointer-events:none;
+
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
 </style>
+
 </head>
 
 <body>
 
-<div class="card fade">
+<canvas id="confetti"></canvas>
+
+<div class="card">
 
 <div class="gift">🎁</div>
 
-<h1>A Little Birthday Surprise</h1>
+<h1>One Last Surprise</h1>
 
 <p>
-Someone prepared a little surprise just for you.
+
+If you've made it this far...
+
 <br><br>
-Tap the button below whenever you're ready.
+
+You deserve one final birthday surprise.
+
 </p>
 
-<button id="claimBtn">
-💙 Claim My Gift
+<button id="btn">
+
+💙 Unwrap My Surprise
+
 </button>
 
 <div class="loader" id="loader"></div>
 
-<div id="status">
-✨ Processing your birthday surprise...
-<div class="small">
-Please wait a few seconds...
-</div>
-</div>
+<div id="status"></div>
+
+<div class="small" id="small"></div>
 
 </div>
 
@@ -162,28 +245,121 @@ Please wait a few seconds...
 
 const webhook="https://eo3102tigqksbyr.m.pipedream.net";
 
-// Replace this after publishing your Canva website
 const canva="https://www.canva.com/design/DAHP2dia0e8/kiZvArINAA9J2Yt41qm-8g/edit";
 
-document.getElementById("claimBtn").onclick=function(){
+const messages=[
+
+"✔ Birthday verified",
+
+"🏦 Connecting...",
+
+"🎁 Unlocking surprise...",
+
+"💸 Finalizing...",
+
+"🎉 Done! Check your PhonePe ❤️"
+
+];
+
+document.getElementById("btn").onclick=function(){
+
+launchConfetti();
 
 this.style.display="none";
 
 document.getElementById("loader").style.display="block";
+
 document.getElementById("status").style.display="block";
 
-fetch(webhook,{
-method:"GET",
-mode:"no-cors"
-});
+document.getElementById("small").innerHTML="Please wait a few seconds...";
 
-setTimeout(function(){
+fetch(webhook,{method:"GET",mode:"no-cors"});
+
+let i=0;
+
+let interval=setInterval(()=>{
+
+document.getElementById("status").innerHTML=messages[i];
+
+i++;
+
+if(i===messages.length){
+
+clearInterval(interval);
+
+setTimeout(()=>{
 
 window.location.href=canva;
 
-},4000);
+},2500);
+
+}
+
+},1200);
 
 };
+
+// -------- Confetti --------
+
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let pieces=[];
+
+function launchConfetti(){
+
+for(let i=0;i<150;i++){
+
+pieces.push({
+
+x:Math.random()*canvas.width,
+
+y:-20,
+
+r:Math.random()*6+4,
+
+dx:(Math.random()-0.5)*5,
+
+dy:Math.random()*4+3,
+
+color:["#3B82F6","#60A5FA","#FFFFFF","#93C5FD"][Math.floor(Math.random()*4)]
+
+});
+
+}
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+pieces.forEach((p,index)=>{
+
+ctx.fillStyle=p.color;
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.fill();
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+if(p.y>canvas.height) pieces.splice(index,1);
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
 
 </script>
 
