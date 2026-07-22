@@ -1,55 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Birthday Surprise</title>
 
 <style>
+
+/* ---------------- BASIC RESET ---------------- */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:"Trebuchet MS", Arial, sans-serif;
 }
+
+
+/* ---------------- BODY ---------------- */
 
 body{
 
-background:linear-gradient(135deg,#031224,#0A1F44,#173A75);
+background:
+radial-gradient(
+circle at 50% 0%,
+#12325D 0%,
+transparent 38%
+),
+
+linear-gradient(
+135deg,
+#020B1C,
+#06152E,
+#0B2447
+);
+
 height:100vh;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 overflow:hidden;
+
 color:white;
 
 }
 
+
+/* ---------------- SUBTLE STARS ---------------- */
+
 body::before{
 
-content:"";
+content:"✦   ˚   ✧   ⋆   ✦   ˚   ✧   ⋆   ✦";
+
 position:absolute;
+
+font-size:24px;
+
+letter-spacing:45px;
+
+line-height:100px;
+
+color:rgba(255,255,255,.18);
+
 width:200%;
+
 height:200%;
-background-image:
-radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px);
 
-background-size:45px 45px;
+top:-30%;
 
-animation:stars 35s linear infinite;
+left:-20%;
 
-opacity:.35;
+transform:rotate(-12deg);
+
+animation:floatStars 25s linear infinite;
+
+pointer-events:none;
 
 }
 
-@keyframes stars{
+
+@keyframes floatStars{
+
+0%{
+
+transform:translateY(0) rotate(-12deg);
+
+}
 
 100%{
-transform:translateY(-250px);
+
+transform:translateY(-180px) rotate(-12deg);
+
 }
 
 }
+
+
+/* ---------------- CARD ---------------- */
 
 .card{
 
@@ -57,17 +111,25 @@ position:relative;
 
 width:430px;
 
-padding:45px;
+padding:48px 40px;
 
-border-radius:28px;
+border-radius:32px;
 
-background:rgba(255,255,255,.08);
+background:
 
-backdrop-filter:blur(18px);
+rgba(8, 28, 58, .78);
 
-border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(22px);
 
-box-shadow:0 20px 50px rgba(0,0,0,.45);
+-webkit-backdrop-filter:blur(22px);
+
+border:1px solid rgba(151,183,230,.18);
+
+box-shadow:
+
+0 25px 70px rgba(0,0,0,.55),
+
+inset 0 0 30px rgba(255,255,255,.025);
 
 text-align:center;
 
@@ -75,73 +137,157 @@ z-index:2;
 
 }
 
+
+/* ---------------- SOFT GLOW ---------------- */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+width:120px;
+
+height:120px;
+
+background:rgba(83,130,194,.18);
+
+filter:blur(40px);
+
+top:-35px;
+
+right:-30px;
+
+border-radius:50%;
+
+pointer-events:none;
+
+}
+
+
+/* ---------------- GIFT ---------------- */
+
 .gift{
 
-font-size:70px;
+font-size:65px;
 
 animation:float 3s ease-in-out infinite;
 
+filter:drop-shadow(
+
+0 0 15px rgba(147,197,253,.25)
+
+);
+
 }
+
 
 @keyframes float{
 
 50%{
-transform:translateY(-10px);
+
+transform:
+
+translateY(-9px)
+
+rotate(3deg);
+
 }
 
 }
+
+
+/* ---------------- HEADING ---------------- */
 
 h1{
 
-margin-top:15px;
+margin-top:18px;
 
-font-size:34px;
+font-family:Georgia, serif;
+
+font-size:32px;
+
+font-weight:normal;
+
+letter-spacing:.3px;
 
 }
+
+
+/* ---------------- MESSAGE ---------------- */
 
 p{
 
 margin-top:20px;
 
-color:#D5E1FF;
+color:#DCE7FF;
 
 line-height:1.7;
 
-font-size:18px;
+font-size:17px;
 
 }
 
+
+/* ---------------- BUTTON ---------------- */
+
 button{
 
-margin-top:35px;
+margin-top:32px;
 
-padding:17px 45px;
+padding:16px 42px;
 
 border:none;
 
-border-radius:60px;
+border-radius:50px;
 
-background:#2563EB;
+background:
+
+linear-gradient(
+
+135deg,
+
+#1D4E89,
+
+#3269A8
+
+);
 
 color:white;
 
-font-size:18px;
+font-size:17px;
+
+font-weight:bold;
 
 cursor:pointer;
 
 transition:.3s;
 
-box-shadow:0 0 25px rgba(37,99,235,.45);
+box-shadow:
+
+0 8px 25px rgba(20,70,130,.45),
+
+inset 0 1px 1px rgba(255,255,255,.25);
 
 }
+
 
 button:hover{
 
-transform:scale(1.05);
+transform:
 
-background:#3B82F6;
+translateY(-3px)
+
+scale(1.04);
+
+box-shadow:
+
+0 12px 30px rgba(30,90,160,.55);
 
 }
+
+
+/* ---------------- LOADER ---------------- */
 
 .loader{
 
@@ -149,56 +295,76 @@ display:none;
 
 margin:35px auto;
 
-width:65px;
+width:58px;
 
-height:65px;
+height:58px;
 
 border-radius:50%;
 
-border:6px solid rgba(255,255,255,.15);
+border:
 
-border-top:6px solid white;
+5px solid rgba(255,255,255,.12);
+
+border-top:
+
+5px solid #BFD7FF;
 
 animation:spin 1s linear infinite;
 
 }
 
+
 @keyframes spin{
 
 100%{
+
 transform:rotate(360deg);
+
 }
 
 }
+
+
+/* ---------------- STATUS ---------------- */
 
 #status{
 
 display:none;
 
-font-size:22px;
+font-size:20px;
 
 margin-top:15px;
 
 min-height:40px;
 
+color:#E5EEFF;
+
 }
+
+
+/* ---------------- SMALL TEXT ---------------- */
 
 .small{
 
 margin-top:20px;
 
-font-size:15px;
+font-size:14px;
 
-color:#bfcfff;
+color:#AFC5EA;
 
 }
+
+
+/* ---------------- CONFETTI ---------------- */
 
 canvas{
 
 position:fixed;
 
 left:0;
+
 top:0;
+
 pointer-events:none;
 
 }
@@ -207,161 +373,323 @@ pointer-events:none;
 
 </head>
 
+
 <body>
+
 
 <canvas id="confetti"></canvas>
 
+
 <div class="card">
 
-<div class="gift">🎁</div>
 
-<h1>One Last Surprise</h1>
+<div class="gift">
 
-<p>
-
-If you've made it this far...
-
-<br><br>
-
-You deserve one final birthday surprise.
-
-</p>
-
-<button id="btn">
-
-💙 Unwrap My Surprise
-
-</button>
-
-<div class="loader" id="loader"></div>
-
-<div id="status"></div>
-
-<div class="small" id="small"></div>
+🎁
 
 </div>
 
+
+<h1>
+
+A Little Birthday Contribution 💙
+
+</h1>
+
+
+<p>
+
+You can have one today, actually...
+
+<br><br>
+
+I know you'll probably have one anyway without me saying anything,
+
+but I wanted to contribute a little to the cause. 😂
+
+</p>
+
+
+<button id="btn">
+
+Click pls 💙
+
+</button>
+
+
+<div class="loader" id="loader"></div>
+
+
+<div id="status"></div>
+
+
+<div class="small" id="small"></div>
+
+
+</div>
+
+
 <script>
 
-const webhook="https://eo3102tigqksbyr.m.pipedream.net";
 
-const canva="https://www.canva.com/design/DAHP2dia0e8/kiZvArINAA9J2Yt41qm-8g/edit";
+/* ---------------- LINKS ---------------- */
 
-const messages=[
+
+const webhook =
+
+"https://eo3102tigqksbyr.m.pipedream.net";
+
+
+const canva =
+
+"https://www.canva.com/design/DAHP2dia0e8/kiZvArINAA9J2Yt41qm-8g/edit";
+
+
+/* ---------------- MESSAGES ---------------- */
+
+
+const messages = [
 
 "✔ Birthday verified",
 
-"🏦 Connecting...",
+"Connecting...",
 
-"🎁 Unlocking surprise...",
+"pls wait.... ",
 
-"💸 Finalizing...",
+"Finalizing...",
 
 "🎉 Done! Check your PhonePe ❤️"
 
 ];
 
-document.getElementById("btn").onclick=function(){
+
+/* ---------------- BUTTON ---------------- */
+
+
+document.getElementById("btn").onclick = function(){
+
 
 launchConfetti();
 
-this.style.display="none";
 
-document.getElementById("loader").style.display="block";
+this.style.display = "none";
 
-document.getElementById("status").style.display="block";
 
-document.getElementById("small").innerHTML="Please wait a few seconds...";
+document.getElementById("loader").style.display = "block";
 
-fetch(webhook,{method:"GET",mode:"no-cors"});
 
-let i=0;
+document.getElementById("status").style.display = "block";
 
-let interval=setInterval(()=>{
 
-document.getElementById("status").innerHTML=messages[i];
+document.getElementById("small").innerHTML =
+
+"Please wait a few seconds...";
+
+
+fetch(
+
+webhook,
+
+{
+
+method:"GET",
+
+mode:"no-cors"
+
+}
+
+);
+
+
+let i = 0;
+
+
+let interval = setInterval(() => {
+
+
+document.getElementById("status").innerHTML =
+
+messages[i];
+
 
 i++;
 
-if(i===messages.length){
+
+if(i === messages.length){
+
 
 clearInterval(interval);
 
-setTimeout(()=>{
 
-window.location.href=canva;
+setTimeout(() => {
 
-},2500);
+
+window.location.href = canva;
+
+
+}, 2500);
+
 
 }
 
-},1200);
+
+}, 1200);
+
 
 };
 
-// -------- Confetti --------
 
-const canvas=document.getElementById("confetti");
-const ctx=canvas.getContext("2d");
+/* ---------------- CONFETTI ---------------- */
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
 
-let pieces=[];
+const canvas =
+
+document.getElementById("confetti");
+
+
+const ctx =
+
+canvas.getContext("2d");
+
+
+canvas.width =
+
+window.innerWidth;
+
+
+canvas.height =
+
+window.innerHeight;
+
+
+let pieces = [];
+
 
 function launchConfetti(){
 
-for(let i=0;i<150;i++){
+
+for(let i = 0; i < 150; i++){
+
 
 pieces.push({
 
-x:Math.random()*canvas.width,
+
+x:Math.random() * canvas.width,
+
 
 y:-20,
 
-r:Math.random()*6+4,
 
-dx:(Math.random()-0.5)*5,
+r:Math.random() * 6 + 4,
 
-dy:Math.random()*4+3,
 
-color:["#3B82F6","#60A5FA","#FFFFFF","#93C5FD"][Math.floor(Math.random()*4)]
+dx:(Math.random() - .5) * 5,
+
+
+dy:Math.random() * 4 + 3,
+
+
+color:[
+
+"#1D4E89",
+
+"#3269A8",
+
+"#FFFFFF",
+
+"#8FB7E8"
+
+][
+
+Math.floor(
+
+Math.random() * 4
+
+)
+
+]
+
 
 });
 
-}
 
 }
+
+
+}
+
 
 function draw(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
 
-pieces.forEach((p,index)=>{
+ctx.clearRect(
 
-ctx.fillStyle=p.color;
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+
+pieces.forEach((p,index) => {
+
+
+ctx.fillStyle = p.color;
+
 
 ctx.beginPath();
 
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.arc(
+
+p.x,
+
+p.y,
+
+p.r,
+
+0,
+
+Math.PI * 2
+
+);
+
 
 ctx.fill();
 
-p.x+=p.dx;
 
-p.y+=p.dy;
+p.x += p.dx;
 
-if(p.y>canvas.height) pieces.splice(index,1);
 
-});
+p.y += p.dy;
 
-requestAnimationFrame(draw);
+
+if(p.y > canvas.height){
+
+pieces.splice(index,1);
 
 }
 
+
+});
+
+
+requestAnimationFrame(draw);
+
+
+}
+
+
 draw();
+
 
 </script>
 
+
 </body>
+
 </html>
