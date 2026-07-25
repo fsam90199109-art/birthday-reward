@@ -8,6 +8,12 @@
 
 <title>Birthday Surprise</title>
 
+<!-- Elegant fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
 
 /* ---------------- BASIC RESET ---------------- */
@@ -16,7 +22,6 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:"Trebuchet MS", Arial, sans-serif;
 }
 
 
@@ -25,20 +30,28 @@ font-family:"Trebuchet MS", Arial, sans-serif;
 body{
 
 background:
+
 radial-gradient(
 circle at 50% 0%,
-#12325D 0%,
+#6F1D3A 0%,
 transparent 38%
+),
+
+radial-gradient(
+circle at 0% 100%,
+#3A1025 0%,
+transparent 40%
 ),
 
 linear-gradient(
 135deg,
-#020B1C,
-#06152E,
-#0B2447
+#14050D,
+#260A17,
+#3B0D20,
+#17050D
 );
 
-height:100vh;
+min-height:100vh;
 
 display:flex;
 
@@ -48,12 +61,12 @@ align-items:center;
 
 overflow:hidden;
 
-color:white;
+color:#FFF5F7;
 
 }
 
 
-/* ---------------- SUBTLE STARS ---------------- */
+/* ---------------- FLOATING STARS ---------------- */
 
 body::before{
 
@@ -67,7 +80,7 @@ letter-spacing:45px;
 
 line-height:100px;
 
-color:rgba(255,255,255,.18);
+color:rgba(255,220,230,.16);
 
 width:200%;
 
@@ -79,7 +92,7 @@ left:-20%;
 
 transform:rotate(-12deg);
 
-animation:floatStars 25s linear infinite;
+animation:floatStars 28s linear infinite;
 
 pointer-events:none;
 
@@ -111,34 +124,67 @@ position:relative;
 
 width:430px;
 
-padding:48px 40px;
+padding:50px 42px;
 
-border-radius:32px;
+border-radius:34px;
 
 background:
 
-rgba(8, 28, 58, .78);
+linear-gradient(
 
-backdrop-filter:blur(22px);
+145deg,
 
--webkit-backdrop-filter:blur(22px);
+rgba(72,18,40,.78),
 
-border:1px solid rgba(151,183,230,.18);
+rgba(31,7,18,.88)
+
+);
+
+backdrop-filter:blur(24px);
+
+-webkit-backdrop-filter:blur(24px);
+
+border:1px solid rgba(255,210,222,.20);
 
 box-shadow:
 
-0 25px 70px rgba(0,0,0,.55),
+0 30px 80px rgba(0,0,0,.65),
 
-inset 0 0 30px rgba(255,255,255,.025);
+0 0 35px rgba(125,32,65,.20),
+
+inset 0 0 35px rgba(255,255,255,.035);
 
 text-align:center;
 
 z-index:2;
 
+animation:cardAppear 1s ease forwards;
+
 }
 
 
-/* ---------------- SOFT GLOW ---------------- */
+@keyframes cardAppear{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px) scale(.96);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0) scale(1);
+
+}
+
+}
+
+
+/* ---------------- CARD GLOW ---------------- */
 
 .card::before{
 
@@ -146,17 +192,42 @@ content:"";
 
 position:absolute;
 
-width:120px;
+width:150px;
 
-height:120px;
+height:150px;
 
-background:rgba(83,130,194,.18);
+background:rgba(176,67,103,.20);
 
-filter:blur(40px);
+filter:blur(50px);
 
-top:-35px;
+top:-45px;
 
-right:-30px;
+right:-35px;
+
+border-radius:50%;
+
+pointer-events:none;
+
+}
+
+
+.card::after{
+
+content:"";
+
+position:absolute;
+
+width:130px;
+
+height:130px;
+
+background:rgba(112,24,57,.18);
+
+filter:blur(45px);
+
+bottom:-40px;
+
+left:-35px;
 
 border-radius:50%;
 
@@ -169,28 +240,28 @@ pointer-events:none;
 
 .gift{
 
-font-size:65px;
+font-size:68px;
 
-animation:float 3s ease-in-out infinite;
+animation:floatGift 3s ease-in-out infinite;
 
-filter:drop-shadow(
+filter:
 
-0 0 15px rgba(147,197,253,.25)
-
-);
+drop-shadow(0 0 12px rgba(255,190,207,.25));
 
 }
 
 
-@keyframes float{
+@keyframes floatGift{
+
+0%,100%{
+
+transform:translateY(0) rotate(0deg);
+
+}
 
 50%{
 
-transform:
-
-translateY(-9px)
-
-rotate(3deg);
+transform:translateY(-10px) rotate(3deg);
 
 }
 
@@ -201,15 +272,17 @@ rotate(3deg);
 
 h1{
 
-margin-top:18px;
+margin-top:20px;
 
-font-family:Georgia, serif;
+font-family:"Cormorant Garamond", Georgia, serif;
 
-font-size:32px;
+font-size:39px;
 
-font-weight:normal;
+font-weight:600;
 
-letter-spacing:.3px;
+letter-spacing:.5px;
+
+color:#FFE7ED;
 
 }
 
@@ -220,11 +293,13 @@ p{
 
 margin-top:20px;
 
-color:#DCE7FF;
+font-family:"Montserrat", Arial, sans-serif;
 
-line-height:1.7;
+color:#F3DCE3;
 
-font-size:17px;
+line-height:1.8;
+
+font-size:15px;
 
 }
 
@@ -235,9 +310,9 @@ button{
 
 margin-top:32px;
 
-padding:16px 42px;
+padding:16px 44px;
 
-border:none;
+border:1px solid rgba(255,220,230,.25);
 
 border-radius:50px;
 
@@ -247,27 +322,31 @@ linear-gradient(
 
 135deg,
 
-#1D4E89,
+#7A1F45,
 
-#3269A8
+#A33B61
 
 );
 
-color:white;
+color:#FFF5F7;
 
-font-size:17px;
+font-family:"Montserrat", Arial, sans-serif;
 
-font-weight:bold;
+font-size:15px;
+
+font-weight:600;
+
+letter-spacing:.4px;
 
 cursor:pointer;
 
-transition:.3s;
+transition:.35s ease;
 
 box-shadow:
 
-0 8px 25px rgba(20,70,130,.45),
+0 10px 28px rgba(104,20,53,.45),
 
-inset 0 1px 1px rgba(255,255,255,.25);
+inset 0 1px 1px rgba(255,255,255,.20);
 
 }
 
@@ -276,13 +355,34 @@ button:hover{
 
 transform:
 
-translateY(-3px)
+translateY(-4px)
 
 scale(1.04);
 
+background:
+
+linear-gradient(
+
+135deg,
+
+#8F2851,
+
+#B54870
+
+);
+
 box-shadow:
 
-0 12px 30px rgba(30,90,160,.55);
+0 15px 35px rgba(145,38,80,.55),
+
+0 0 18px rgba(213,108,140,.22);
+
+}
+
+
+button:active{
+
+transform:scale(.98);
 
 }
 
@@ -303,11 +403,11 @@ border-radius:50%;
 
 border:
 
-5px solid rgba(255,255,255,.12);
+5px solid rgba(255,220,230,.12);
 
 border-top:
 
-5px solid #BFD7FF;
+5px solid #E9A7B9;
 
 animation:spin 1s linear infinite;
 
@@ -331,13 +431,40 @@ transform:rotate(360deg);
 
 display:none;
 
-font-size:20px;
+font-family:"Cormorant Garamond", Georgia, serif;
+
+font-size:25px;
+
+font-weight:600;
 
 margin-top:15px;
 
 min-height:40px;
 
-color:#E5EEFF;
+color:#FFE6ED;
+
+animation:fadeText .5s ease;
+
+}
+
+
+@keyframes fadeText{
+
+from{
+
+opacity:0;
+
+transform:translateY(5px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
 
 }
 
@@ -348,9 +475,13 @@ color:#E5EEFF;
 
 margin-top:20px;
 
-font-size:14px;
+font-family:"Montserrat", Arial, sans-serif;
 
-color:#AFC5EA;
+font-size:12px;
+
+letter-spacing:.5px;
+
+color:#CFAAB7;
 
 }
 
@@ -366,6 +497,8 @@ left:0;
 top:0;
 
 pointer-events:none;
+
+z-index:10;
 
 }
 
@@ -392,23 +525,25 @@ pointer-events:none;
 
 <h1>
 
-A Little Contribution 💙
+A Little Contribution 💌
 
 </h1>
 
 
 <p>
 
+Something special is waiting for you...
 
 <br><br>
 
+Just a tiny contribution from you before we continue ✨
 
 </p>
 
 
 <button id="btn">
 
-Click pls 💙
+Click pls 🤍
 
 </button>
 
@@ -450,7 +585,7 @@ const messages = [
 
 "Connecting...",
 
-"pls wait.... ",
+"Please wait...",
 
 "Finalizing...",
 
@@ -587,19 +722,21 @@ dy:Math.random() * 4 + 3,
 
 color:[
 
-"#1D4E89",
+"#7A1F45",
 
-"#3269A8",
+"#A33B61",
 
-"#FFFFFF",
+"#E9A7B9",
 
-"#8FB7E8"
+"#FFF5F7",
+
+"#C56A88"
 
 ][
 
 Math.floor(
 
-Math.random() * 4
+Math.random() * 5
 
 )
 
@@ -681,6 +818,18 @@ requestAnimationFrame(draw);
 
 
 draw();
+
+
+/* ---------------- RESPONSIVE ---------------- */
+
+
+window.addEventListener("resize", () => {
+
+canvas.width = window.innerWidth;
+
+canvas.height = window.innerHeight;
+
+});
 
 
 </script>
