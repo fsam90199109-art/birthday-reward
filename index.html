@@ -4,818 +4,582 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Surprise</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<!-- Elegant fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Birthday Quest</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-<style>
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-/* ---------------- BASIC RESET ---------------- */
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Press+Start+2P&display=swap"
+rel="stylesheet">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-
-/* ---------------- BODY ---------------- */
-
-body{
-
-background:
-
-radial-gradient(
-circle at 50% 0%,
-#6F1D3A 0%,
-transparent 38%
-),
-
-radial-gradient(
-circle at 0% 100%,
-#3A1025 0%,
-transparent 40%
-),
-
-linear-gradient(
-135deg,
-#14050D,
-#260A17,
-#3B0D20,
-#17050D
-);
-
-min-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-overflow:hidden;
-
-color:#FFF5F7;
-
-}
-
-
-/* ---------------- FLOATING STARS ---------------- */
-
-body::before{
-
-content:"✦   ˚   ✧   ⋆   ✦   ˚   ✧   ⋆   ✦";
-
-position:absolute;
-
-font-size:24px;
-
-letter-spacing:45px;
-
-line-height:100px;
-
-color:rgba(255,220,230,.16);
-
-width:200%;
-
-height:200%;
-
-top:-30%;
-
-left:-20%;
-
-transform:rotate(-12deg);
-
-animation:floatStars 28s linear infinite;
-
-pointer-events:none;
-
-}
-
-
-@keyframes floatStars{
-
-0%{
-
-transform:translateY(0) rotate(-12deg);
-
-}
-
-100%{
-
-transform:translateY(-180px) rotate(-12deg);
-
-}
-
-}
-
-
-/* ---------------- CARD ---------------- */
-
-.card{
-
-position:relative;
-
-width:430px;
-
-padding:50px 42px;
-
-border-radius:34px;
-
-background:
-
-linear-gradient(
-
-145deg,
-
-rgba(72,18,40,.78),
-
-rgba(31,7,18,.88)
-
-);
-
-backdrop-filter:blur(24px);
-
--webkit-backdrop-filter:blur(24px);
-
-border:1px solid rgba(255,210,222,.20);
-
-box-shadow:
-
-0 30px 80px rgba(0,0,0,.65),
-
-0 0 35px rgba(125,32,65,.20),
-
-inset 0 0 35px rgba(255,255,255,.035);
-
-text-align:center;
-
-z-index:2;
-
-animation:cardAppear 1s ease forwards;
-
-}
-
-
-@keyframes cardAppear{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px) scale(.96);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0) scale(1);
-
-}
-
-}
-
-
-/* ---------------- CARD GLOW ---------------- */
-
-.card::before{
-
-content:"";
-
-position:absolute;
-
-width:150px;
-
-height:150px;
-
-background:rgba(176,67,103,.20);
-
-filter:blur(50px);
-
-top:-45px;
-
-right:-35px;
-
-border-radius:50%;
-
-pointer-events:none;
-
-}
-
-
-.card::after{
-
-content:"";
-
-position:absolute;
-
-width:130px;
-
-height:130px;
-
-background:rgba(112,24,57,.18);
-
-filter:blur(45px);
-
-bottom:-40px;
-
-left:-35px;
-
-border-radius:50%;
-
-pointer-events:none;
-
-}
-
-
-/* ---------------- GIFT ---------------- */
-
-.gift{
-
-font-size:68px;
-
-animation:floatGift 3s ease-in-out infinite;
-
-filter:
-
-drop-shadow(0 0 12px rgba(255,190,207,.25));
-
-}
-
-
-@keyframes floatGift{
-
-0%,100%{
-
-transform:translateY(0) rotate(0deg);
-
-}
-
-50%{
-
-transform:translateY(-10px) rotate(3deg);
-
-}
-
-}
-
-
-/* ---------------- HEADING ---------------- */
-
-h1{
-
-margin-top:20px;
-
-font-family:"Cormorant Garamond", Georgia, serif;
-
-font-size:39px;
-
-font-weight:600;
-
-letter-spacing:.5px;
-
-color:#FFE7ED;
-
-}
-
-
-/* ---------------- MESSAGE ---------------- */
-
-p{
-
-margin-top:20px;
-
-font-family:"Montserrat", Arial, sans-serif;
-
-color:#F3DCE3;
-
-line-height:1.8;
-
-font-size:15px;
-
-}
-
-
-/* ---------------- BUTTON ---------------- */
-
-button{
-
-margin-top:32px;
-
-padding:16px 44px;
-
-border:1px solid rgba(255,220,230,.25);
-
-border-radius:50px;
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#7A1F45,
-
-#A33B61
-
-);
-
-color:#FFF5F7;
-
-font-family:"Montserrat", Arial, sans-serif;
-
-font-size:15px;
-
-font-weight:600;
-
-letter-spacing:.4px;
-
-cursor:pointer;
-
-transition:.35s ease;
-
-box-shadow:
-
-0 10px 28px rgba(104,20,53,.45),
-
-inset 0 1px 1px rgba(255,255,255,.20);
-
-}
-
-
-button:hover{
-
-transform:
-
-translateY(-4px)
-
-scale(1.04);
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#8F2851,
-
-#B54870
-
-);
-
-box-shadow:
-
-0 15px 35px rgba(145,38,80,.55),
-
-0 0 18px rgba(213,108,140,.22);
-
-}
-
-
-button:active{
-
-transform:scale(.98);
-
-}
-
-
-/* ---------------- LOADER ---------------- */
-
-.loader{
-
-display:none;
-
-margin:35px auto;
-
-width:58px;
-
-height:58px;
-
-border-radius:50%;
-
-border:
-
-5px solid rgba(255,220,230,.12);
-
-border-top:
-
-5px solid #E9A7B9;
-
-animation:spin 1s linear infinite;
-
-}
-
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-
-/* ---------------- STATUS ---------------- */
-
-#status{
-
-display:none;
-
-font-family:"Cormorant Garamond", Georgia, serif;
-
-font-size:25px;
-
-font-weight:600;
-
-margin-top:15px;
-
-min-height:40px;
-
-color:#FFE6ED;
-
-animation:fadeText .5s ease;
-
-}
-
-
-@keyframes fadeText{
-
-from{
-
-opacity:0;
-
-transform:translateY(5px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-
-/* ---------------- SMALL TEXT ---------------- */
-
-.small{
-
-margin-top:20px;
-
-font-family:"Montserrat", Arial, sans-serif;
-
-font-size:12px;
-
-letter-spacing:.5px;
-
-color:#CFAAB7;
-
-}
-
-
-/* ---------------- CONFETTI ---------------- */
-
-canvas{
-
-position:fixed;
-
-left:0;
-
-top:0;
-
-pointer-events:none;
-
-z-index:10;
-
-}
-
-</style>
+<link rel="stylesheet"
+href="style.css">
 
 </head>
-
 
 <body>
 
 
-<canvas id="confetti"></canvas>
+<!-- ====================================== -->
+<!-- GAME 1 -->
+<!-- ====================================== -->
 
+<section id="game1"
+class="screen active">
 
-<div class="card">
+<div class="title">
 
+<h1>
 
-<div class="gift">
+⭐ Find The Lucky Star ⭐
 
-🎁
+</h1>
+
+<p>
+
+Find the star shown below.
 
 </p>
-
-
-<button id="btn">
-
-Click pls 🤍
-
-</button>
-
-
-<div class="loader" id="loader"></div>
-
-
-<div id="status"></div>
-
-
-<div class="small" id="small"></div>
-
 
 </div>
 
 
-<script>
+<div class="mission-card">
 
+<span>
 
-/* ---------------- LINKS ---------------- */
+Find this star
 
+</span>
 
-const webhook =
+<div class="target-example">
 
-"https://eo3102tigqksbyr.m.pipedream.net";
+✦
 
+</div>
 
-const canva =
+</div>
 
-"https://www.canva.com/design/DAHP2dia0e8/kiZvArINAA9J2Yt41qm-8g/edit";
 
+<div id="galaxy">
 
-/* ---------------- MESSAGES ---------------- */
+<!-- Stars generated by JavaScript -->
 
+</div>
 
-const messages = [
+</section>
 
-"✔ Birthday verified",
 
-"Connecting...",
 
-"Please wait...",
+<!-- ====================================== -->
+<!-- GAME 2 -->
+<!-- ====================================== -->
 
-"Finalizing...",
+<section id="game2"
+class="screen">
 
-"🎉 Done! Check your PhonePe ❤️"
+<div class="title">
 
-];
+<h1>
 
+🎁 Catch The Magic Gift
 
-/* ---------------- BUTTON ---------------- */
+</h1>
 
+<p>
 
-document.getElementById("btn").onclick = function(){
+Catch it 3 times!
 
+</p>
 
-launchConfetti();
+</div>
 
 
-this.style.display = "none";
+<div class="gift-progress">
 
+<span id="giftCount">
 
-document.getElementById("loader").style.display = "block";
+0
 
+</span>
 
-document.getElementById("status").style.display = "block";
+/ 3
 
+</div>
 
-document.getElementById("small").innerHTML =
 
-"Please wait a few seconds...";
+<div class="sky">
 
+<div class="cloud cloud1"></div>
 
-fetch(
+<div class="cloud cloud2"></div>
 
-webhook,
+<div class="cloud cloud3"></div>
 
-{
+</div>
 
-method:"GET",
 
-mode:"no-cors"
+<div id="gift">
 
-}
+🎁
 
-);
+</div>
 
+</section>
 
-let i = 0;
 
 
-let interval = setInterval(() => {
+<!-- ====================================== -->
+<!-- GAME 3 -->
+<!-- ====================================== -->
 
+<section id="game3"
+class="screen">
 
-document.getElementById("status").innerHTML =
+<div class="cafe-header">
 
-messages[i];
+<h1>
 
+☕ Bella's Café
 
-i++;
+</h1>
 
+<p>
 
-if(i === messages.length){
+Choose a dessert and a drink.
 
+</p>
 
-clearInterval(interval);
+</div>
+  <!-- ====================================== -->
+<!-- DESSERT MENU -->
+<!-- ====================================== -->
 
+<div class="menu-section">
 
-setTimeout(() => {
+<h2>
 
+🍰 Choose Your Dessert
 
-window.location.href = canva;
+</h2>
 
+<div class="card-container">
 
-}, 2500);
+<div class="menu-card dessert-card"
 
+data-dessert="tiramisu">
 
-}
+<div class="food-image">
 
+🍰
 
-}, 1200);
+</div>
 
+<h3>
 
-};
+Tiramisu Cheesecake
 
+</h3>
 
-/* ---------------- CONFETTI ---------------- */
+<p>
 
+Creamy • Coffee • Cocoa
 
-const canvas =
+</p>
 
-document.getElementById("confetti");
+<button class="select-btn">
 
+Choose
 
-const ctx =
+</button>
 
-canvas.getContext("2d");
+</div>
 
 
-canvas.width =
 
-window.innerWidth;
+<div class="menu-card dessert-card"
 
+data-dessert="lava">
 
-canvas.height =
+<div class="food-image">
 
-window.innerHeight;
+🍫
 
+</div>
 
-let pieces = [];
+<h3>
 
+Molten Lava Cake
 
-function launchConfetti(){
+</h3>
 
+<p>
 
-for(let i = 0; i < 150; i++){
+Warm • Gooey • Chocolate
 
+</p>
 
-pieces.push({
+<button class="select-btn">
 
+Choose
 
-x:Math.random() * canvas.width,
+</button>
 
+</div>
 
-y:-20,
 
 
-r:Math.random() * 6 + 4,
+<div class="menu-card dessert-card"
 
+data-dessert="forest">
 
-dx:(Math.random() - .5) * 5,
+<div class="food-image">
 
+🍒
 
-dy:Math.random() * 4 + 3,
+</div>
 
+<h3>
 
-color:[
+Black Forest Cake
 
-"#7A1F45",
+</h3>
 
-"#A33B61",
+<p>
 
-"#E9A7B9",
+Chocolate • Cherry • Cream
 
-"#FFF5F7",
+</p>
 
-"#C56A88"
+<button class="select-btn">
 
-][
+Choose
 
-Math.floor(
+</button>
 
-Math.random() * 5
+</div>
 
-)
+</div>
 
-]
+</div>
 
 
-});
 
+<!-- ====================================== -->
+<!-- DRINK MENU -->
+<!-- ====================================== -->
 
-}
+<div class="menu-section">
 
+<h2>
 
-}
+🧋 Choose Your Beverage
 
+</h2>
 
-function draw(){
+<div class="card-container">
 
+<div class="menu-card drink-card"
 
-ctx.clearRect(
+data-drink="brown">
 
-0,
+<div class="food-image">
 
-0,
+🧋
 
-canvas.width,
+</div>
 
-canvas.height
+<h3>
 
-);
+Brown Sugar Boba
 
+</h3>
 
-pieces.forEach((p,index) => {
+<p>
 
+Classic Brown Sugar
 
-ctx.fillStyle = p.color;
+</p>
 
+<button class="select-btn">
 
-ctx.beginPath();
+Choose
 
+</button>
 
-ctx.arc(
+</div>
 
-p.x,
 
-p.y,
 
-p.r,
+<div class="menu-card drink-card"
 
-0,
+data-drink="strawberry">
 
-Math.PI * 2
+<div class="food-image">
 
-);
+🍓
 
+</div>
 
-ctx.fill();
+<h3>
 
+Strawberry Milk Tea
 
-p.x += p.dx;
+</h3>
 
+<p>
 
-p.y += p.dy;
+Sweet & Creamy
 
+</p>
 
-if(p.y > canvas.height){
+<button class="select-btn">
 
-pieces.splice(index,1);
+Choose
 
-}
+</button>
 
+</div>
 
-});
 
 
-requestAnimationFrame(draw);
+<div class="menu-card drink-card"
 
+data-drink="mango">
 
-}
+<div class="food-image">
 
+🥭
 
-draw();
+</div>
 
+<h3>
 
-/* ---------------- RESPONSIVE ---------------- */
+Mango Boba
 
+</h3>
 
-window.addEventListener("resize", () => {
+<p>
 
-canvas.width = window.innerWidth;
+Fresh Tropical Flavor
 
-canvas.height = window.innerHeight;
+</p>
 
-});
+<button class="select-btn">
 
+Choose
 
-</script>
+</button>
 
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ====================================== -->
+<!-- CAFE -->
+<!-- ====================================== -->
+
+<div id="cafeArea"
+
+class="hidden">
+
+<div class="cafe-room">
+
+
+
+<div class="fairy-lights"></div>
+
+
+
+<div class="left-shelf">
+
+🌿 ☕
+
+</div>
+
+
+
+<div class="right-shelf">
+
+🍪 🍫
+
+</div>
+
+
+
+<div class="counter">
+
+
+
+<div class="machine"
+
+id="coffeeMachine">
+
+☕
+
+<span>
+
+Coffee Machine
+
+</span>
+
+</div>
+
+
+
+<div class="machine"
+
+id="mixer">
+
+🥣
+
+<span>
+
+Mixer
+
+</span>
+
+</div>
+
+
+
+<div class="machine"
+
+id="cocoa">
+
+🍫
+
+<span>
+
+Cocoa
+
+</span>
+
+</div>
+
+
+
+<div class="machine"
+
+id="tea">
+
+🧋
+
+<span>
+
+Tea Station
+
+</span>
+
+</div>
+
+
+
+<div id="cakeStand">
+
+🍽️
+
+</div>
+
+
+
+<div id="drinkStand">
+
+🥤
+
+</div>
+
+</div>
+
+
+
+<div class="progress-box">
+
+<h3>
+
+Today's Order
+
+</h3>
+
+<div id="chosenDessert">
+
+No Dessert Selected
+
+</div>
+
+<div id="chosenDrink">
+
+No Drink Selected
+
+</div>
+
+<div id="recipeProgress">
+
+0 / 6 Steps Completed
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ====================================== -->
+<!-- FINAL REWARD -->
+<!-- ====================================== -->
+
+<section id="reward"
+
+class="screen">
+
+<div class="reward-box">
+
+<h1>
+
+🎉 Perfect!
+
+</h1>
+
+<p>
+
+Your café order is complete!
+
+</p>
+
+<p>
+
+A special birthday reward is waiting...
+
+</p>
+
+<button id="claimReward">
+
+🎁 Claim Reward
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<script src="script.js"></script>
 
 </body>
 
